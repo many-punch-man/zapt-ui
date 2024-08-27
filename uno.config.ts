@@ -8,8 +8,8 @@ export default defineConfig({
         presetAttributify({}),
         presetUno(),
         zaptPreset(),
-    ],
-    transformers: [transformerVariantGroup()],
+],
+transformers: [transformerVariantGroup()],
     shortcuts: {
         //     这里是快捷方式，允许多个规则组合在一起
         'center-row': 'flex flex-row justify-center items-center'
