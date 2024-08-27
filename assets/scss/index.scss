@@ -1,0 +1,47 @@
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+html.dark {
+  background: #222;
+  color: white;
+}
+
+a {
+  font-weight: 400;
+  color: var(--el-color-primary);
+}
+
+:root{
+  --header-height: 4rem;  // top header / top bar height
+
+
+  --left-menu-max-width: 12rem; // left menu max width
+  --left-menu-min-width: 4rem;
+}
+
+
+//全局定义类
+//下拉框样式
+.cust-popper-class{
+  padding: 0 5px !important;
+}
+
+// table 样式 表格
+.cust-header-cell{
+  padding:  0 !important;
+  .cell{
+    background: #f2f5f7 !important;
+    padding: 0.25rem 1rem !important;
+    font-weight: 500 !important;
+  }
+
+}
+
+.cust-header-class{
+  padding: 0 2rem;
+}
