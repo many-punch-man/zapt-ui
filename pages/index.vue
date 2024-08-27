@@ -1,9 +1,13 @@
 <template>
   <div>
     这里是首页
+    {{data}}
   </div>
 </template>
 
-<script lang="tsx" setup>
+<script setup lang="ts" >
 defineOptions({name: 'index'})
+
+const {data,execute} = await useAsyncData(()=>getTestAPI())
+
 </script>

@@ -8,8 +8,19 @@ type CommonResponse<repT> =  {
 
 type customerOptions = {
     isToken?: boolean,
-    row?: boolean
+    isApp?: boolean,
 }
 
 
 type ApiOptions = NitroFetchOptions<any> & customerOptions
+
+
+////////// auth 相关的类型
+
+
+type UserToken = {
+    accessToken: string
+    refreshToken: string
+    expiresTime: number
+    userId: string
+}

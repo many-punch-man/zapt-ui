@@ -7,7 +7,7 @@
 import type {CookieRef} from "nuxt/app";
 
 import type {NitroFetchOptions} from "nitropack";
-import type {ApiOptions, CommonResponse} from "~/types";
+import type {ApiOptions, CommonResponse, UserToken} from "~/types";
 
 /**
  * interface FetchOptions {
@@ -94,9 +94,11 @@ export default defineNuxtPlugin((nuxtApp) => {
             }
         }
 
+        const apiSuffix = options.isApp ? '/app-api' : '/admin-api'
+
         //默认请求头
         const defaultOptions = {
-            baseURL: 'http://localhost:1023/admin-api',
+            baseURL: 'http://localhost:48080'+apiSuffix,
             method: 'GET',
         }
 
@@ -200,7 +202,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 ////////////////////////////////结束响应//////////////////////////////
         } catch (error) {
 
-            console.warn("发送请求的时候发生错误------------>{}", error)
+            console.warn("发送请求的时候发生错误------------> {}", error)
             return Promise.reject(error);
         }
         // 走到这里还没有执行的话，那就是发生了意外错误

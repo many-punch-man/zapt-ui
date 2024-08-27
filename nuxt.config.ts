@@ -12,6 +12,12 @@ export default defineNuxtConfig({
         importStyle: 'scss',
     },
     css: ['~/assets/scss/index.scss'],
+    imports:{
+        dirs:[
+            'composables',
+            'composables/**'
+        ]
+    },
     vite: {
         css: {
             preprocessorOptions: {
