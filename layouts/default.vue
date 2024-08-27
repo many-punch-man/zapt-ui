@@ -1,6 +1,5 @@
 <template>
   <div>
-    <LayoutTopBar/>
     <slot></slot>
   </div>
 </template>
