@@ -25,7 +25,9 @@ import Stats from './Stats.vue'
             </p>
             <div class="max-w-xs mx-auto sm:max-w-none sm:inline-flex sm:justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <div>
-                <router-link class="btn text-zinc-100 bg-zinc-900 hover:bg-zinc-800 w-full shadow" to="/request-demo">Request Demo</router-link>
+                <NuxtLink to="/request-demo">
+                  <div class="btn text-zinc-100 bg-zinc-900 hover:bg-zinc-800 w-full shadow" >Request Demo</div>
+                </NuxtLink>
               </div>
               <div>
                 <a class="btn text-zinc-600 bg-white hover:text-zinc-900 w-full shadow" href="#0">Try for Free</a>

@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     elementPlus: {
         importStyle: 'scss',
     },
-    css: ['~/assets/scss/index.scss','~/assets/css/main.css'],
+    css: ['~/assets/scss/index.scss','~/assets/css/main.css','~/assets/css/style.css'],
     imports:{
         dirs:[
             'composables',
