@@ -20,11 +20,11 @@
         <!-- Content -->
         <div class="max-w-3xl mx-auto text-center pb-12 md:pb-16">
           <h1 class="h1 mb-4" data-aos="fade-up">Complete and powerful feature to meet most enterprises</h1>
-          <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200">Every feature in Open PRO makes things easy to build, pleasant to create,
+          <p class="text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200">Every feature in ZAPT makes things easy to build, pleasant to create,
             and simple to manage.</p>
         </div>
         <!-- Image -->
-        <img class="mx-auto" src="../images/hero-image-02.png" width="768" height="432" alt="Hero" data-aos="fade-up" data-aos-delay="400" />
+        <img class="mx-auto" src="/assets/images/hero-image-02.png" width="768" height="432" alt="Hero" data-aos="fade-up" data-aos-delay="400" />
       </div>
 
     </div>
