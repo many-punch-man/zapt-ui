@@ -1,11 +1,9 @@
 <template>
-  <div>
-    123456
-  </div>
+  <div>这里是管理员首页</div>
 </template>
 
 <script lang="tsx" setup>
 import {ref} from 'vue'
 
-defineOptions({name: 'LayoutTopBar'})
+defineOptions({name: 'index'})
 </script>

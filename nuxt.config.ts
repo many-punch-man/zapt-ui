@@ -30,5 +30,7 @@ export default defineNuxtConfig({
         plugins:{
             autoprefixer:{}
         }
+    },
+    routeRules: {
     }
 })

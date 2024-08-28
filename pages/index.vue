@@ -1,9 +1,9 @@
 <template>
-
-  <div>首页</div>
+  <div>123456</div>
 </template>
 
+<script lang="tsx" setup>
+import {ref} from 'vue'
 
-<script setup lang="ts">
-  defineOptions({name:'index'})
+defineOptions({name: 'index'})
 </script>
