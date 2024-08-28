@@ -16,6 +16,7 @@
     "vue": "latest"
   },
   "devDependencies": {
+    "@nuxt/devtools": "^1.4.1",
     "@tailwindcss/forms": "^0.5.7",
     "autoprefixer": "^10.4.20",
     "element-plus": "^2.8.1",
