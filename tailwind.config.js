@@ -14,6 +14,11 @@ export default {
         inter: ['Inter', 'sans-serif'],
         'inter-tight': ['Inter Tight', 'sans-serif']
       },
+      spacing: {
+        '9/16': '56.25%',
+        '3/4': '75%',
+        '1/1': '100%',
+      },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1.5' }],
         sm: ['0.875rem', { lineHeight: '1.5715' }],
@@ -40,7 +45,21 @@ export default {
           from: { transform: 'translateX(-100%)' },
           to: { transform: 'translateX(0)' },
         }
-      }
+      },
+      letterSpacing: {
+        tighter: '-0.02em',
+        tight: '-0.01em',
+        normal: '0',
+        wide: '0.01em',
+        wider: '0.02em',
+        widest: '0.4em',
+      },
+      minWidth: {
+        '10': '2.5rem',
+      },
+      scale: {
+        '98': '.98'
+      },
     },
   },
   plugins: [require('@tailwindcss/forms'),],
