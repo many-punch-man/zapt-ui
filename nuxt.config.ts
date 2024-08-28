@@ -4,10 +4,10 @@ import {include, exclude} from "./build/optimize";
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
     devtools: {enabled: true},
-    modules: ['@element-plus/nuxt', '@nuxtjs/tailwindcss', "@nuxt/devtools"],
-    elementPlus: {
-        importStyle: 'scss',
-    },
+    modules: [ '@nuxtjs/tailwindcss', "@nuxt/devtools"],
+    // elementPlus: {
+    //     importStyle: 'scss',
+    // },
     css: ['~/assets/scss/index.scss'],
     imports: {
         dirs: [
