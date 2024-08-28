@@ -1,5 +1,6 @@
 <template>
   <HeroFeatures />
+  <Stats />
 </template>
 
 <script lang="tsx" setup>
