@@ -4,9 +4,7 @@ import {include, exclude} from "./build/optimize";
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
     devtools: {enabled: true},
-    modules: [
-        '@element-plus/nuxt'
-    ],
+    modules: ['@element-plus/nuxt', '@nuxtjs/tailwindcss'],
     elementPlus: {
         importStyle: 'scss',
     },
@@ -28,4 +26,9 @@ export default defineNuxtConfig({
         },
         optimizeDeps: {include, exclude}
     },
+    postcss:{
+        plugins:{
+            autoprefixer:{}
+        }
+    }
 })
