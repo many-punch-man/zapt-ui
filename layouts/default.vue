@@ -1,6 +1,14 @@
 <template>
-  <div>
-    <slot></slot>
+  <div class="flex flex-col min-h-screen overflow-hidden">
+    <!-- Site header -->
+    <Header />
+
+    <main class="grow">
+      <slot></slot>
+    </main>
+
+
+    <Footer/>
   </div>
 </template>
 

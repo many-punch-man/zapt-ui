@@ -1,5 +1,6 @@
 <template>
-  <div>123456</div>
+  <!--  -->
+  123456
 </template>
 
 <script lang="tsx" setup>

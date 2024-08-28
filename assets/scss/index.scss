@@ -1,47 +1,24 @@
-html,
-body,
-#app {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;500;600;700;800;900&display=fallback');
 
-html.dark {
-  background: #222;
-  color: white;
-}
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
 
-a {
-  font-weight: 400;
-  color: var(--el-color-primary);
-}
+/* Additional styles */
+@import 'additional-styles/utility-patterns.css';
+@import 'additional-styles/range-slider.css';
+@import 'additional-styles/toggle-switch.css';
+@import 'additional-styles/theme.css';
 
-:root{
-  --header-height: 4rem;  // top header / top bar height
+@import 'tailwindcss/utilities';
 
-
-  --left-menu-max-width: 12rem; // left menu max width
-  --left-menu-min-width: 4rem;
-}
-
-
-//全局定义类
-//下拉框样式
-.cust-popper-class{
-  padding: 0 5px !important;
-}
-
-// table 样式 表格
-.cust-header-cell{
-  padding:  0 !important;
-  .cell{
-    background: #f2f5f7 !important;
-    padding: 0.25rem 1rem !important;
-    font-weight: 500 !important;
+/* Additional Tailwind directives: https://tailwindcss.com/docs/functions-and-directives/#responsive */
+@layer utilities {
+  .rtl {
+    direction: rtl;
   }
-
 }
 
-.cust-header-class{
-  padding: 0 2rem;
+/* See Alpine.js: https://github.com/alpinejs/alpine#x-cloak */
+[x-cloak=""] {
+  display: none;
 }
