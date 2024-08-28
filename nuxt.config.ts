@@ -35,5 +35,8 @@ export default defineNuxtConfig({
         "/":{
             proxy:"/home"
         }
-    }
+    },
+    plugins: [
+        '~/plugins/aos.client.ts',
+    ],
 })

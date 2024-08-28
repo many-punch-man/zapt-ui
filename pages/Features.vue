@@ -1,6 +1,5 @@
 <template>
-  <div class="h-[80vh]">
-  </div>
+  <HeroFeatures />
 </template>
 
 <script lang="tsx" setup>
