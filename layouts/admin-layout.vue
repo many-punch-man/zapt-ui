@@ -1,7 +1,18 @@
 <template>
-  <div>
-    管理员布局
-    <slot></slot>
+  <div class="flex h-[100dvh] overflow-hidden">
+    <!-- Sidebar -->
+    <AdminSidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
+
+    <!-- Content area -->
+    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+      <!-- Site header -->
+      <AdminHeader :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
+      <main class="grow">
+        <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+            <slot></slot>
+        </div>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -9,4 +20,7 @@
 import {ref} from 'vue'
 
 defineOptions({name: 'admin-layout'})
+
+
+const sidebarOpen = ref(false)
 </script>

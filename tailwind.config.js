@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
 export default {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -86,6 +87,13 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms'),],
+  plugins: [require('@tailwindcss/forms'),
+    // add custom variant for expanding sidebar
+    plugin(({ addVariant, e }) => {
+      addVariant('sidebar-expanded', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => `.sidebar-expanded .${e(`sidebar-expanded${separator}${className}`)}`);
+      });
+    }),
+  ],
 }
 
