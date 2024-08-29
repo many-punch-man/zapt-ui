@@ -31,9 +31,9 @@ export default defineNuxtConfig({
             autoprefixer: {}
         }
     },
-    routeRules: {
-        "/":{
-            proxy:"/home"
-        }
-    },
+    // routeRules: {
+    //     "/":{
+    //         proxy:"/home"
+    //     }
+    // },
 })
