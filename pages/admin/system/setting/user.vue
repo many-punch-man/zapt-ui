@@ -1,6 +1,6 @@
 <template>
   <!-- Page header -->
-  <div class="flex md:flex-row flex-col">
+  <div class="flex md:flex-row flex-col h-full">
     <UserDeptSidebar />
     <UserList />
   </div>

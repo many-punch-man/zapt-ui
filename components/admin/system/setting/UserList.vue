@@ -1,5 +1,5 @@
 <template>
-  <div class="grow flex flex-col justify-between relative">
+  <div class="grow flex flex-col justify-between relative bg-white dark:bg-gray-800">
 
     <!--search -->
     <div class="py-6 border-b border-slate-200 dark:border-slate-700">
@@ -70,7 +70,7 @@
 
     <div class="grow  relative w-full overflow-auto box-border min-h-[300px] md:min-h-[500px] border-b border-slate-200 dark:border-slate-700 ">
       <div class="w-full p-2 absolute box-border block ">
-        <el-table :data="tableData" class=" block"  border>
+        <el-table :data="tableData" class=" block" >
           <el-table-column prop="date" label="Date" width="180" />
           <el-table-column prop="name" label="Name" width="180" />
           <el-table-column prop="aaname" label="aaname" width="180" />

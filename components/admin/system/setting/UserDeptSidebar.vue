@@ -7,8 +7,7 @@
         py-2 px-2
         md:px-3 md:py-3
         relative
-
-
+        bg-white dark:bg-gray-800
 "
   >
     <!--dropdown backdrop (mobile only)-->
