@@ -1,5 +1,5 @@
 <template>
-  <div class="grow flex flex-col justify-between">
+  <div class="grow flex flex-col justify-between relative">
 
     <!--search -->
     <div class="py-6 border-b border-slate-200 dark:border-slate-700">
@@ -54,10 +54,10 @@
             <el-icon class="mr-2">
               <Download/>
             </el-icon>
-            Import
+            Export
           </el-button>
 
-          <el-button type="success" plain>
+          <el-button type="warning" plain>
             <el-icon class="mr-2">
               <Upload/>
             </el-icon>
@@ -68,19 +68,19 @@
       </el-form>
     </div>
 
-    <div class="grow">
-      <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="date" label="Date" width="180" />
-        <el-table-column prop="name" label="Name" width="180" />
-        <el-table-column prop="name" label="Name" width="180" />
-        <el-table-column prop="name" label="Name" width="180" />
-        <el-table-column prop="name" label="Name" width="180" />
-        <el-table-column prop="address" label="Address" />
-      </el-table>
-
+    <div class="grow  relative w-full overflow-auto box-border min-h-[300px] md:min-h-[500px] border-b border-slate-200 dark:border-slate-700 ">
+      <div class="w-full p-2 absolute box-border block ">
+        <el-table :data="tableData" class=" block"  border>
+          <el-table-column prop="date" label="Date" width="180" />
+          <el-table-column prop="name" label="Name" width="180" />
+          <el-table-column prop="aaname" label="aaname" width="180" />
+          <el-table-column prop="bbname" label="bbname" width="180" />
+          <el-table-column prop="address" label="Address"/>
+        </el-table>
+      </div>
     </div>
-    <div>
-      翻页器
+    <div class="p-2 box-border flex justify-end">
+      <el-pagination background layout="prev, pager, next" :total="1000" />
     </div>
 
   </div>
@@ -92,7 +92,29 @@ import {Bottom, Brush, Delete, Download, Plus, Refresh, Search, Upload} from "@e
 
 defineOptions({name: 'UserList'})
 
-const tableData = ref([])
+
+const tableData = [
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+]
 
 
 </script>
