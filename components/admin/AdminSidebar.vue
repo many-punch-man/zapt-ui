@@ -16,14 +16,14 @@
                 aria-controls="sidebar" :aria-expanded="sidebarOpen">
           <span class="sr-only">Close sidebar</span>
           <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z" />
+            <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z"/>
           </svg>
         </button>
         <!-- Logo -->
         <router-link class="block" to="/">
           <svg class="fill-violet-500" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
             <path
-                d="M31.956 14.8C31.372 6.92 25.08.628 17.2.044V5.76a9.04 9.04 0 0 0 9.04 9.04h5.716ZM14.8 26.24v5.716C6.92 31.372.63 25.08.044 17.2H5.76a9.04 9.04 0 0 1 9.04 9.04Zm11.44-9.04h5.716c-.584 7.88-6.876 14.172-14.756 14.756V26.24a9.04 9.04 0 0 1 9.04-9.04ZM.044 14.8C.63 6.92 6.92.628 14.8.044V5.76a9.04 9.04 0 0 1-9.04 9.04H.044Z" />
+                d="M31.956 14.8C31.372 6.92 25.08.628 17.2.044V5.76a9.04 9.04 0 0 0 9.04 9.04h5.716ZM14.8 26.24v5.716C6.92 31.372.63 25.08.044 17.2H5.76a9.04 9.04 0 0 1 9.04 9.04Zm11.44-9.04h5.716c-.584 7.88-6.876 14.172-14.756 14.756V26.24a9.04 9.04 0 0 1 9.04-9.04ZM.044 14.8C.63 6.92 6.92.628 14.8.044V5.76a9.04 9.04 0 0 1-9.04 9.04H.044Z"/>
           </svg>
         </router-link>
       </div>
@@ -48,7 +48,7 @@
                     <svg class="shrink-0 fill-current text-gray-400 dark:text-gray-500"
                          xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                       <path
-                          d="M11.442 4.576a1 1 0 1 0-1.634-1.152L4.22 11.35 1.773 8.366A1 1 0 1 0 .227 9.634l3.281 4a1 1 0 0 0 1.59-.058l6.344-9ZM15.817 4.576a1 1 0 1 0-1.634-1.152l-5.609 7.957a1 1 0 0 0-1.347 1.453l.656.8a1 1 0 0 0 1.59-.058l6.344-9Z" />
+                          d="M11.442 4.576a1 1 0 1 0-1.634-1.152L4.22 11.35 1.773 8.366A1 1 0 1 0 .227 9.634l3.281 4a1 1 0 0 0 1.59-.058l6.344-9ZM15.817 4.576a1 1 0 1 0-1.634-1.152l-5.609 7.957a1 1 0 0 0-1.347 1.453l.656.8a1 1 0 0 0 1.59-.058l6.344-9Z"/>
                     </svg>
                     <span
                         class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">User Setting</span>
@@ -57,37 +57,48 @@
                   <div class="flex shrink-0 ml-2">
                     <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-gray-400 dark:text-gray-500"
                          :class="parentLink.expanded && 'rotate-180'" viewBox="0 0 12 12">
-                      <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+                      <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"/>
                     </svg>
                   </div>
                 </div>
               </a>
               <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                 <ul class="pl-8 mt-1" :class="!parentLink.expanded && 'hidden'">
-                  <NuxtLink to="/admin/system/setting/user" custom v-slot="{ href, navigate }">
+                  <NuxtLink to="/admin/system/setting/user" custom v-slot="{ href, navigate,isExactActive }">
                     <li class="mb-1 last:mb-0">
-                      <a class="block text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition truncate"
+                      <a class="block transition truncate"
+                         :class="isExactActive ? 'text-violet-500' : 'text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
                          :href="href" @click="navigate">
                         <span
                             class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">User</span>
                       </a>
                     </li>
+                  </NuxtLink>
+
+                  <NuxtLink to="/admin/system/setting/department" custom v-slot="{ href, navigate,isExactActive }">
                     <li class="mb-1 last:mb-0">
-                      <a class="block text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition truncate"
+                      <a class="block transition truncate"
+                         :class="isExactActive ? 'text-violet-500' : 'text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
                          :href="href" @click="navigate">
                         <span
                             class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Department</span>
                       </a>
                     </li>
+                  </NuxtLink>
+                  <NuxtLink to="/admin/system/setting/role" custom v-slot="{ href, navigate ,isExactActive}">
                     <li class="mb-1 last:mb-0">
-                      <a class="block text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition truncate"
+                      <a class="block transition truncate"
+                         :class="isExactActive ? 'text-violet-500' : 'text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
                          :href="href" @click="navigate">
                         <span
                             class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Role</span>
                       </a>
                     </li>
+                  </NuxtLink>
+                  <NuxtLink to="/admin/system/setting/position" custom v-slot="{ href, navigate ,isExactActive}">
                     <li class="mb-1 last:mb-0">
-                      <a class="block text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition truncate"
+                      <a class="block transition truncate"
+                         :class="isExactActive ? 'text-violet-500' : 'text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
                          :href="href" @click="navigate">
                         <span
                             class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Position</span>
@@ -97,7 +108,7 @@
                 </ul>
               </div>
             </SidebarLinkGroup>
-             <!--  -->
+            <!--  -->
           </ul>
         </div>
 
@@ -1183,7 +1194,7 @@
             <svg class="shrink-0 fill-current text-gray-400 dark:text-gray-500 sidebar-expanded:rotate-180"
                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
               <path
-                  d="M15 16a1 1 0 0 1-1-1V1a1 1 0 1 1 2 0v14a1 1 0 0 1-1 1ZM8.586 7H1a1 1 0 1 0 0 2h7.586l-2.793 2.793a1 1 0 1 0 1.414 1.414l4.5-4.5A.997.997 0 0 0 12 8.01M11.924 7.617a.997.997 0 0 0-.217-.324l-4.5-4.5a1 1 0 0 0-1.414 1.414L8.586 7M12 7.99a.996.996 0 0 0-.076-.373Z" />
+                  d="M15 16a1 1 0 0 1-1-1V1a1 1 0 1 1 2 0v14a1 1 0 0 1-1 1ZM8.586 7H1a1 1 0 1 0 0 2h7.586l-2.793 2.793a1 1 0 1 0 1.414 1.414l4.5-4.5A.997.997 0 0 0 12 8.01M11.924 7.617a.997.997 0 0 0-.217-.324l-4.5-4.5a1 1 0 0 0-1.414 1.414L8.586 7M12 7.99a.996.996 0 0 0-.076-.373Z"/>
             </svg>
           </button>
         </div>
@@ -1222,7 +1233,7 @@ const sidebarExpanded = ref(storedSidebarExpanded === null ? false : storedSideb
 const currentRoute = useRouter().currentRoute.value
 
 // close on click outside
-const clickHandler = (e:MouseEvent) => {
+const clickHandler = (e: MouseEvent) => {
   if (!sidebar.value || !trigger.value) return
   if (
       !props.sidebarOpen ||
@@ -1233,7 +1244,7 @@ const clickHandler = (e:MouseEvent) => {
 }
 
 // close if the esc key is pressed
-const keyHandler = (e:KeyboardEvent) => {
+const keyHandler = (e: KeyboardEvent) => {
   if (!props.sidebarOpen || e.code !== '27') return
   emit('close-sidebar')
 }
@@ -1254,7 +1265,7 @@ onUnmounted(() => {
   document.removeEventListener('keydown', keyHandler)
 })
 
-watch(()=>sidebarExpanded.value, () => {
+watch(() => sidebarExpanded.value, () => {
   // localStorage.setItem('sidebar-expanded', String(sidebarExpanded.value))
   if (sidebarExpanded.value) {
     document.querySelector('body')?.classList.add('sidebar-expanded')
@@ -1262,7 +1273,6 @@ watch(()=>sidebarExpanded.value, () => {
     document.querySelector('body')?.classList.remove('sidebar-expanded')
   }
 })
-
 
 
 </script>

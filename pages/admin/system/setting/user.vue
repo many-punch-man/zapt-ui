@@ -1,11 +1,9 @@
 <template>
   <!-- Page header -->
-  <PageHeader title="User List" />
-
-  <BaseCard class="">
-      <UserDeptSidebar />
-      <UserList />
-  </BaseCard>
+  <div class="flex md:flex-row flex-col">
+    <UserDeptSidebar />
+    <UserList />
+  </div>
 
 </template>
 
