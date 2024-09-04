@@ -7,8 +7,9 @@ export default defineNuxtConfig({
     modules: ['@nuxtjs/tailwindcss', "@nuxt/devtools", 'nuxt-aos','@element-plus/nuxt','@pinia/nuxt','@pinia-plugin-persistedstate/nuxt'],
     elementPlus: {
         importStyle: 'scss',
+        themes: ['dark'],
     },
-    css: ['~/assets/scss/index.scss','element-plus/theme-chalk/dark/css-vars.css'],
+    css: ['~/assets/scss/index.scss'],
     imports: {
         dirs: [
             'composables',
