@@ -70,12 +70,18 @@
 
     <div class="grow  relative w-full overflow-auto box-border min-h-[300px] md:min-h-[500px] border-b border-slate-200 dark:border-slate-700 ">
       <div class="w-full p-2 absolute box-border block ">
-        <el-table :data="tableData" class=" block" >
-          <el-table-column prop="date" label="Date" width="180" />
-          <el-table-column prop="name" label="Name" width="180" />
-          <el-table-column prop="aaname" label="aaname" width="180" />
-          <el-table-column prop="bbname" label="bbname" width="180" />
-          <el-table-column prop="address" label="Address"/>
+        <el-table :data="list" class=" block" >
+          <el-table-column prop="username" label="Date" width="180" />
+          <el-table-column prop="nickname" label="Date" width="180" />
+          <el-table-column prop="email" label="Date" width="180" />
+          <el-table-column prop="mobile" label="Date" width="180" />
+          <el-table-column prop="sex" label="Date" width="180" >
+            <template #default="scope">
+              {{ scope.row.sex === 1 ? '男' : '女' }}
+            </template>
+          </el-table-column>
+          <el-table-column prop="status" label="Date" width="180" />
+          <el-table-column prop="createTime" label="Date" width="180" />
         </el-table>
       </div>
     </div>
@@ -89,32 +95,31 @@
 <script lang="tsx" setup>
 import {ref} from 'vue'
 import {Bottom, Brush, Delete, Download, Plus, Refresh, Search, Upload} from "@element-plus/icons-vue";
+import type {PageResult} from "~/types";
 
 defineOptions({name: 'UserList'})
 
 
-const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-]
 
+
+const list = ref<UserVO[]>([])
+const total = ref(0)
+
+const getList = async () => {
+  const data = await fetchGet<PageResult<UserVO>>("/system/user/page", {
+    params: {
+      pageNo: 1,
+      pageSize: 15
+    }
+  })
+
+  list.value = data.list
+  total.value = data.total
+}
+
+
+onMounted(async () => {
+  await getList()
+})
 
 </script>

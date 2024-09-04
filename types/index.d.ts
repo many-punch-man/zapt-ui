@@ -6,6 +6,11 @@ type CommonResponse<repT> =  {
     data: repT
 }
 
+type PageResult<T> = {
+    total: number
+    list: T[]
+}
+
 type customerOptions = {
     isToken?: boolean,
     isApp?: boolean,
