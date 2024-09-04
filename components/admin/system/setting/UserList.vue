@@ -71,17 +71,21 @@
     <div class="grow  relative w-full overflow-auto box-border min-h-[300px] md:min-h-[500px] border-b border-slate-200 dark:border-slate-700 ">
       <div class="w-full p-2 absolute box-border block ">
         <el-table :data="list" class=" block" >
-          <el-table-column prop="username" label="Date" width="180" />
-          <el-table-column prop="nickname" label="Date" width="180" />
-          <el-table-column prop="email" label="Date" width="180" />
-          <el-table-column prop="mobile" label="Date" width="180" />
-          <el-table-column prop="sex" label="Date" width="180" >
+          <el-table-column prop="username" label="username" width="180" />
+          <el-table-column prop="nickname" label="nickname" width="180" />
+          <el-table-column prop="email" label="email" width="180" />
+          <el-table-column prop="mobile" label="mobile" width="180" />
+          <el-table-column prop="sex" label="sex" width="180" >
             <template #default="scope">
               {{ scope.row.sex === 1 ? '男' : '女' }}
             </template>
           </el-table-column>
-          <el-table-column prop="status" label="Date" width="180" />
-          <el-table-column prop="createTime" label="Date" width="180" />
+          <el-table-column prop="status" label="status" width="180" />
+          <el-table-column prop="createTime" label="createTime" width="180" >
+            <template #default="scope">
+              {{ formatterData(scope.row.createTime)}}
+            </template>
+          </el-table-column>
         </el-table>
       </div>
     </div>
@@ -96,6 +100,7 @@
 import {ref} from 'vue'
 import {Bottom, Brush, Delete, Download, Plus, Refresh, Search, Upload} from "@element-plus/icons-vue";
 import type {PageResult} from "~/types";
+import dayjs from "dayjs";
 
 defineOptions({name: 'UserList'})
 
@@ -115,6 +120,10 @@ const getList = async () => {
 
   list.value = data.list
   total.value = data.total
+}
+
+const formatterData = (date:number):string =>{
+  return dayjs(date).format("YYYY-MM-DD")
 }
 
 

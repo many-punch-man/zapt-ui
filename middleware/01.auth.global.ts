@@ -17,6 +17,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
             if (userToken.value?.accessToken) {
                 if (to.path === '/signin') {
                     // 已经登录的，直接返回去管理员首页，不要重复登录
+                    console.log("middleware: 已经登录，重定向到首页")
                     return navigateTo('/admin')
                 } else {
                     // 从localStorage中加载用户信息
@@ -38,6 +39,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
                 }
             } else {
                 // 如果访问token不存在，则直接跳到登录页
+                console.log("middleware: accessToken不存在，重定向")
                 return navigateTo('/signin')
             }
 
