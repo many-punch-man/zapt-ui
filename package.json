@@ -11,18 +11,21 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@element-plus/nuxt": "^1.0.9",
     "@nuxtjs/tailwindcss": "^6.12.1",
+    "@pinia/nuxt": "^0.5.4",
     "aos": "3.0.0-beta.6",
+    "element-plus": "^2.7.7",
     "nuxt": "^3.13.0",
     "nuxt-aos": "^1.2.5",
+    "pinia": "^2.2.2",
     "sass": "^1.77.8",
     "scss": "^0.2.4",
-    "vue": "latest",
-    "@element-plus/nuxt": "^1.0.9",
-    "element-plus": "^2.7.7"
+    "vue": "latest"
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.4.1",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@tailwindcss/forms": "^0.5.7",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",

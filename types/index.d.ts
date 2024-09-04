@@ -24,3 +24,33 @@ type UserToken = {
     expiresTime: number
     userId: string
 }
+
+
+type menuItem = {
+    alwaysShow: boolean
+    children: menuItem[]
+    component: string
+    componentName: string
+    icon: string
+    id: number
+    keepAlive: boolean
+    name: string
+    parentId: number
+    path: string
+    visible: boolean
+}
+
+type UserVO = {
+    id: number
+    avatar: string
+    username: string
+    deptId: number
+}
+
+type UserInfoVO = {
+    permissions: string[]
+    roles: string[]
+    isSetUser: boolean
+    user: UserVO,
+    menus: menuItem[]
+}

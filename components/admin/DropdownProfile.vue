@@ -46,7 +46,7 @@
             <li>
               <router-link
                   class="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3"
-                  to="/signin" @click="dropdownOpen = false">Sign Out
+                  to="/signin" @click="handleSignOut">Sign Out
               </router-link>
             </li>
           </ul>
@@ -93,4 +93,12 @@ onUnmounted(() => {
   document.removeEventListener('click', clickHandler)
   document.removeEventListener('keydown', keyHandler)
 })
+
+const handleSignOut = async () => {
+  await useUserStore().loginOut();
+  dropdownOpen.value = false
+  navigateTo("/")
+}
+
+
 </script>
