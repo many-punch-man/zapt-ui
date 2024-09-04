@@ -39,7 +39,7 @@
           </h3>
           <ul class="mt-3">
             <!-- User Setting -->
-            <SidebarLinkGroup v-slot="parentLink" :activeCondition="currentRoute.fullPath.includes('/admin/system')">
+            <SidebarLinkGroup v-slot="parentLink" :activeCondition="currentRouteFullPath.includes('/admin/system')">
               <a class="block text-gray-800 dark:text-gray-100 truncate transition"
                  :class="parentLink.expanded ? '' : 'hover:text-gray-900 dark:hover:text-white'" href="#0"
                  @click.prevent="parentLink.handleClick(); sidebarExpanded = true">
@@ -1231,6 +1231,10 @@ let storedSidebarExpanded = 'true'
 const sidebarExpanded = ref(storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true')
 
 const currentRoute = useRouter().currentRoute.value
+
+const currentRouteFullPath = computed(() => {
+  return useRouter().currentRoute.value.fullPath
+})
 
 // close on click outside
 const clickHandler = (e: MouseEvent) => {
