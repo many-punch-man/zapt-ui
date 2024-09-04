@@ -8,6 +8,7 @@ import type {CookieRef} from "nuxt/app";
 
 import type {NitroFetchOptions} from "nitropack";
 import type {ApiOptions, CommonResponse, UserToken} from "~/types";
+import {useMessage} from "~/composables/useMessage";
 
 /**
  * interface FetchOptions {
@@ -48,6 +49,7 @@ import type {ApiOptions, CommonResponse, UserToken} from "~/types";
 
 export default defineNuxtPlugin((nuxtApp) => {
 
+    const meesage = useMessage()
 
 
     let requestList: any[] = []
@@ -183,10 +185,12 @@ export default defineNuxtPlugin((nuxtApp) => {
                     //服务器错误
                     //todo 这里需要提示
                     console.log("发生500错误------->{}", response)
+                    meesage.error(response.msg)
                     return Promise.reject(response)
                 }  else if (response.code != 200) {
                     //其他错误
                     //todo 这里需要提示
+                    meesage.error(response.msg)
                     console.log("发生其他错误------->{}", response)
                     return Promise.reject(response)
                 } else {
@@ -195,13 +199,14 @@ export default defineNuxtPlugin((nuxtApp) => {
                 }
             }else {
                 console.log("返回原始数据----->{}", response)
+                meesage.error('error!')
                 return Promise.resolve(response)
             }
 ////////////////////////////////响应请求逻辑//////////////////////////////
 
 ////////////////////////////////结束响应//////////////////////////////
         } catch (error) {
-
+            meesage.error('error!')
             console.warn("发送请求的时候发生错误------------> {}", error)
             return Promise.reject(error);
         }
