@@ -38,7 +38,7 @@
             </el-icon>
             Reset
           </el-button>
-          <el-button type="primary" plain>
+          <el-button type="primary" plain @click="handleAddUser">
             <el-icon class="mr-2">
               <Plus/>
             </el-icon>
@@ -95,16 +95,16 @@
                     />
       </div>
     </div>
+    <UserForm ref="userForm" />
+
 
   </div>
 
 </template>
 
 <script lang="tsx" setup>
-import PageHeader from "~/components/admin/PageHeader.vue";
-import BaseCard from "~/components/admin/BaseCard.vue";
 import UserDeptSidebar from "~/components/admin/system/setting/UserDeptSidebar.vue";
-import UserList from "~/components/admin/system/setting/UserList.vue";
+import UserForm from "~/components/admin/system/setting/UserForm.vue";
 import {Delete, Download, Plus, Refresh, Search, Upload} from "@element-plus/icons-vue";
 import {ref} from "vue";
 import type {PageResult} from "~/types";
@@ -159,6 +159,13 @@ const formatterData = (date:number):string =>{
 
 const handleSelect = (val: any) => {
   console.log(val)
+}
+
+const userForm = ref()
+const handleAddUser = () => {
+  console.log("userForm.value", userForm.value)
+  //@ts-ignore
+  userForm.value.open('create')
 }
 
 onMounted(async () => {

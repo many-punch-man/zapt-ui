@@ -1,6 +1,8 @@
 
 
 ////用户相关的type
+
+// 用户vo
 type UserVO = {
     id: number
     username: string
@@ -16,4 +18,30 @@ type UserVO = {
     remark: string
     loginDate: Date
     createTime: Date
+}
+
+////部门相关type
+
+// 部门vo
+type DeptVO = {
+    id?: number
+    name: string
+    parentId: number
+    status: number
+    sort: number
+    leaderUserId: number
+    phone: string
+    email: string
+    createTime: Date
+}
+
+// 岗位VO
+type PostVO = {
+    id?: number
+    name: string
+    code: string
+    sort: number
+    status: number
+    remark: string
+    createTime?: Date
 }
