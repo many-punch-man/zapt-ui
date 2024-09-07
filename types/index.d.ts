@@ -19,7 +19,11 @@ type customerOptions = {
 
 type ApiOptions = NitroFetchOptions<any> & customerOptions
 
-
+type Tree =  {
+    id: number
+    name: string
+    children?: Tree[] | any[]
+}
 ////////// auth 相关的类型
 
 
