@@ -57,7 +57,7 @@
     <div class=" hidden md:flex flex-nowrap flex-col overflow-x-scroll no-scrollbar md:h-[800px]">
       <el-auto-resizer>
         <template #default="{ height }">
-          <el-tree-v2
+          <el-tree
               ref="treeRef"
               :props="defaultProp"
               :data="deptList"
@@ -67,7 +67,7 @@
               @node-click="handleNodeClick"
               class="no-scrollbar"
           >
-          </el-tree-v2>
+          </el-tree>
         </template>
       </el-auto-resizer>
 
