@@ -10,8 +10,8 @@
     >
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item label="UserName" prop="NickName">
-            <el-input v-model="formData.nickname" placeholder="Please input nickname"/>
+          <el-form-item label="NickName" prop="NickName">
+            <el-input v-model="formData.nickname" placeholder="Please input nickname" autocomplete="off"/>
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -36,7 +36,7 @@
         </el-col>
         <el-col :span="12">
           <el-form-item label="Password" prop="password">
-            <el-input v-model="formData.password" type="password" placeholder="Please input password"/>
+            <el-input v-model="formData.password" type="password" placeholder="Please input password" autocomplete="off"/>
           </el-form-item>
         </el-col>
       </el-row>
@@ -130,10 +130,8 @@ const open = async (type: string, id?: number) => {
   formType.value = type
   console.log(dialogVisible.value)
   if (id) {
-    console.log(id)
+    formData.value = await fetchGet<any>("/system/user/get", {params: {id}})
   }
-  //todo do something
-
   // fetch dept list
   // 加载部门树
   deptList.value = handleTree(await fetchGet<DeptVO[]>("/system/dept/simple-list"))

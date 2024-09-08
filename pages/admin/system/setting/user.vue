@@ -84,6 +84,17 @@
                 {{ formatterData(scope.row.createTime)}}
               </template>
             </el-table-column>
+            <el-table-column label="Action">
+              <template #default="{row}">
+                <el-button type="primary" plain size="small" @click="handleEdit(row.id)">
+                  <el-icon class="mr-2">
+                    <Edit/>
+                  </el-icon>
+                  Edit
+                </el-button>
+              </template>
+            </el-table-column>
+
           </el-table>
         </div>
       </div>
@@ -95,7 +106,7 @@
                     />
       </div>
     </div>
-    <UserForm ref="userForm" />
+    <UserForm ref="userForm" @success="getList"/>
 
 
   </div>
@@ -105,7 +116,7 @@
 <script lang="tsx" setup>
 import UserDeptSidebar from "~/components/admin/system/setting/UserDeptSidebar.vue";
 import UserForm from "~/components/admin/system/setting/UserForm.vue";
-import {Delete, Download, Plus, Refresh, Search, Upload} from "@element-plus/icons-vue";
+import {Delete, Download, Edit, Plus, Refresh, Search, Upload} from "@element-plus/icons-vue";
 import {ref} from "vue";
 import type {PageResult} from "~/types";
 import dayjs from "dayjs";
@@ -166,6 +177,11 @@ const handleAddUser = () => {
   console.log("userForm.value", userForm.value)
   //@ts-ignore
   userForm.value.open('create')
+}
+
+
+const handleEdit = (id:number) => {
+  userForm.value.open('edit',id)
 }
 
 onMounted(async () => {
