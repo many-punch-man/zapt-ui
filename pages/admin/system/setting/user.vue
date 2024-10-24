@@ -1,6 +1,7 @@
 <template>
-  <!-- Page header -->
+
   <div class="flex md:flex-row flex-col h-full">
+    <!-- Page header -->
     <UserDeptSidebar @node-click="handleDeptNodeClick" />
     <!--<UserList />-->
 
@@ -84,13 +85,17 @@
                 {{ formatterData(scope.row.createTime)}}
               </template>
             </el-table-column>
-            <el-table-column label="Action">
+            <el-table-column label="Action" width="250">
               <template #default="{row}">
                 <el-button type="primary" plain size="small" @click="handleEdit(row.id)">
                   <el-icon class="mr-2">
                     <Edit/>
                   </el-icon>
                   Edit
+                </el-button>
+                <el-button type="warning">
+                  <span class="i-ic-outline-lock-reset" ></span>
+                  Reset
                 </el-button>
               </template>
             </el-table-column>
