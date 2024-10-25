@@ -83,7 +83,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         refreshCookie('userToken')
 
         console.log("isToken", isToken,userToken.value)
-        if(!(options.headers?.Authorization)){
+        if(!(options.headers && ('Authorization' in options.headers))){
             // 如果存在 就说明了，token已经设置过了，不需要再设置
             if (isToken && userToken.value.accessToken ) {
                 // 设置请求头
