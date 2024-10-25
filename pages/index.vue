@@ -1,5 +1,4 @@
 <template>
-  <!--  页面模块-->
   <HeroHome />
 </template>
 
