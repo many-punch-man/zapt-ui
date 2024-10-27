@@ -1,6 +1,6 @@
 <template>
-  <!--用户的新增改查-->
   <Dialog v-model="dialogVisible" :title="dialogTitle">
+    <!--用户的新增改查-->
     <el-form
         ref="formRef"
         v-loading="formLoading"
@@ -8,6 +8,21 @@
         :rules="formRules"
         label-width="80px"
     >
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-form-item label="Username" prop="username">
+            <el-input v-model="formData.username" placeholder="Please input username" :disabled="formType==='edit'"/>
+          </el-form-item>
+        </el-col>
+        <!---->
+        <el-col :span="12" v-if="formType === 'create'">
+          <el-form-item label="Password" prop="password">
+            <el-input v-model="formData.password" type="password" placeholder="Please input password" autocomplete="off"/>
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="NickName" prop="NickName">
@@ -28,18 +43,7 @@
         </el-col>
       </el-row>
 
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <el-form-item label="Username" prop="username">
-            <el-input v-model="formData.username" placeholder="Please input username"/>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="Password" prop="password">
-            <el-input v-model="formData.password" type="password" placeholder="Please input password" autocomplete="off"/>
-          </el-form-item>
-        </el-col>
-      </el-row>
+
 
       <el-row :gutter="20">
         <el-col :span="12">
@@ -58,8 +62,8 @@
         <el-col :span="12">
           <el-form-item label="Sex" prop="sex">
             <el-select v-model="formData.sex" placeholder="Please select sex">
-              <el-option label="Male" value="0"/>
-              <el-option label="Female" value="1"/>
+              <el-option label="Male" :value="1"/>
+              <el-option label="Female" :value="2"/>
             </el-select>
           </el-form-item>
         </el-col>
