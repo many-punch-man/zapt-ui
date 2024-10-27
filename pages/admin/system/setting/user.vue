@@ -79,13 +79,13 @@
                 {{ scope.row.sex === 1 ? '男' : '女' }}
               </template>
             </el-table-column>
-            <el-table-column prop="status" label="status" width="180"/>
+            <el-table-column prop="status" label="status" width="80"/>
             <el-table-column prop="createTime" label="createTime">
               <template #default="scope">
                 {{ formatterData(scope.row.createTime) }}
               </template>
             </el-table-column>
-            <el-table-column label="Action" width="250">
+            <el-table-column label="Action" width="300">
               <template #default="{row}">
                 <el-button type="primary" plain size="small" @click="handleEdit(row.id)">
                   <el-icon class="mr-2">
@@ -93,9 +93,9 @@
                   </el-icon>
                   Edit
                 </el-button>
-                <el-button type="warning">
+                <el-button type="warning"  plain size="small" @click="handleResetPasswd(row.id)">
                   <span class="i-ic-outline-lock-reset"></span>
-                  Reset
+                  Reset Password
                 </el-button>
               </template>
             </el-table-column>
@@ -208,6 +208,22 @@ const handleDeleteUser = () => {
       }
   ).catch(() => {
     useMessage().info("Cancel delete")
+  })
+}
+
+
+const handleResetPasswd = async (id: number) => {
+  useMessage().prompt("Do you want to reset password?").then(async ({value}) => {
+    console.log(value)
+    await fetchPut("/system/user/update-password", {
+      body: {
+        id,
+        password: value
+      }
+    })
+    useMessage().success(`Reset password success, new password is ${value}`)
+  }).catch(()=>{
+    useMessage().info("Cancel reset password")
   })
 }
 

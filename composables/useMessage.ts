@@ -20,19 +20,19 @@ export const useMessage = () => {
         },
         // 弹出提示
         alert(content: string) {
-            ElMessageBox.alert(content, 'common.confirmTitle')
+            ElMessageBox.alert(content, 'Tip')
         },
         // 错误提示
         alertError(content: string) {
-            ElMessageBox.alert(content, 'common.confirmTitle', { type: 'error' })
+            ElMessageBox.alert(content, 'Tip', { type: 'error' })
         },
         // 成功提示
         alertSuccess(content: string) {
-            ElMessageBox.alert(content, 'common.confirmTitle', { type: 'success' })
+            ElMessageBox.alert(content, 'Tip', { type: 'success' })
         },
         // 警告提示
         alertWarning(content: string) {
-            ElMessageBox.alert(content, 'common.confirmTitle', { type: 'warning' })
+            ElMessageBox.alert(content,'Tip', { type: 'warning' })
         },
         // 通知提示
         notify(content: string) {
@@ -52,11 +52,20 @@ export const useMessage = () => {
         },
         // 确认窗体
         confirm(content: string, tip?: string) {
-            return ElMessageBox.confirm(content, tip ? tip : 'common.confirmTitle', {
-                confirmButtonText: 'common.ok',
-                cancelButtonText: 'common.cancel',
+            return ElMessageBox.confirm(content, tip ? tip : 'Tip', {
+                confirmButtonText: 'Ok',
+                cancelButtonText: 'Cancel',
                 type: 'warning'
             })
         },
+        // input box
+        prompt(content: string){
+            return ElMessageBox.prompt(content, 'Tip', {
+                confirmButtonText: 'Ok',
+                cancelButtonText: 'Cancel',
+                inputPattern: /^[a-zA-Z0-9]*$/,
+                inputErrorMessage: 'valid error'
+            })
+        }
     }
 }
