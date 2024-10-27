@@ -158,7 +158,11 @@ export default {
             },
         },
     },
-    plugins: [require('@tailwindcss/forms'),
+    plugins: [require('@tailwindcss/forms')({
+        // class 只生成对应的css class，而不会生成一个全局的样式。
+        // 如果需要全局的央视，则需要你 'base'
+        strategy: 'class'
+    }),
         // add custom variant for expanding sidebar
         plugin(({addVariant, e}) => {
             addVariant('sidebar-expanded', ({modifySelectors, separator}) => {
