@@ -44,26 +44,6 @@
             </el-icon>
             Add
           </el-button>
-          <el-button type="warning" plain @click="handleDeleteUser">
-            <el-icon class="mr-2">
-              <Delete/>
-            </el-icon>
-            Delete
-          </el-button>
-
-          <el-button type="success" plain>
-            <el-icon class="mr-2">
-              <Download/>
-            </el-icon>
-            Export
-          </el-button>
-
-          <el-button type="warning" plain>
-            <el-icon class="mr-2">
-              <Upload/>
-            </el-icon>
-            Import
-          </el-button>
         </div>
       </div>
 
@@ -93,10 +73,24 @@
                   </el-icon>
                   Edit
                 </el-button>
-                <el-button type="warning"  plain size="small" @click="handleResetPasswd(row.id)">
-                  <span class="i-ic-outline-lock-reset"></span>
-                  Reset Password
-                </el-button>
+                <el-dropdown class="ml-2">
+                  <el-button type="primary"  plain size="small" >
+                    <span class="mr-8px"><span class="i-ic-baseline-expand-more"></span></span>
+                    More
+                  </el-button>
+                  <template #dropdown>
+                    <el-dropdown-menu>
+                      <el-dropdown-item @click="handleResetPasswd(row.id)">
+                        <span class="mr-8px"><span class="i-ic-outline-lock-reset" ></span></span>
+                        Reset Password
+                      </el-dropdown-item>
+                      <el-dropdown-item @click="handleDeleteUser(row.id)">
+                        <span class="i-ic-baseline-delete-forever mr-8px"></span>
+                        Delete User
+                      </el-dropdown-item>
+                    </el-dropdown-menu>
+                  </template>
+                </el-dropdown>
               </template>
             </el-table-column>
 
@@ -193,16 +187,11 @@ const handleEdit = (id: number) => {
 /**
  * delete user
  */
-const handleDeleteUser = () => {
-  if (currentSelectDataList.value.length != 1) {
-    // if not select data
-    useMessage().warning("Please select one row")
-    return
-  }
+const handleDeleteUser = (id) => {
   useMessage().confirm("Are you sure to delete the user?").then(
       async () => {
         //delete user
-        await deleteUserById(currentSelectDataList.value[0].id)
+        await deleteUserById(id)
         useMessage().success("Delete Success!")
         await getList()
       }
