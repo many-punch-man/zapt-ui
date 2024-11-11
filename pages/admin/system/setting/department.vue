@@ -8,6 +8,7 @@
           :model="queryParams"
           :inline="true"
           ref="queryFormRef"
+          class="dept-search"
       >
         <el-form-item label="Name" prop="name">
           <el-input
@@ -74,7 +75,7 @@
         <el-table-column label="name" prop="name"/>
         <el-table-column prop="leader" label="leader">
           <template #default="scope">
-            {{ userList.find((user) => user.id === scope.row.leaderUserId)?.nickname }}
+            {{scope.row.leaderUserName}}
           </template>
         </el-table-column>
         <el-table-column prop="status" label="status"/>
@@ -98,13 +99,14 @@
         </el-table-column>
       </el-table>
     </div>
-
+    <DeptForm ref="deptFormRef" @success="getList"/>
   </div>
 </template>
 
 <script lang="tsx" setup>
 import {ref} from 'vue'
 import {useMessage} from "~/composables/useMessage";
+import DeptForm from "~/components/admin/system/setting/dept/DeptForm.vue";
 
 defineOptions({name: 'department'})
 
@@ -112,7 +114,6 @@ defineOptions({name: 'department'})
 const tableData = ref<any[]>([])
 const loading = ref(false)
 const isExpandAll = ref(false)
-const userList = ref<any[]>([]) // user list
 const queryFormRef = ref()
 const refreshTable = ref(true) // 重新渲染表格状态
 
@@ -123,9 +124,9 @@ const queryParams = reactive({
   status: undefined
 })
 
-
+const deptFormRef = ref()
 const openForm = (type: string, id?: number) => {
-
+  deptFormRef.value.open(type, id)
 }
 
 const handleDelete = async (id: number) => {
@@ -135,7 +136,7 @@ const handleDelete = async (id: number) => {
       id
     }
   })
-  await useMessage().success("Delete success");
+  useMessage().success("Delete success");
   await getList()
 }
 
@@ -170,20 +171,29 @@ const getList = async () => {
 
 onMounted(async () => {
   await handleQuery()
-  // 获取用户列表
-  userList.value = await fetchGet<any[]>("/system/user/simple-list")
 })
 
 </script>
 
 <style lang="scss" scoped>
 //use deep selector to override element-plus style
-:deep(.el-form-item ) {
-  margin-bottom: 0;
-  margin-right: 16px;
-}
+//:deep(.el-form-item ) {
+//  margin-bottom: 0;
+//  margin-right: 16px;
+//}
+//
+//:deep(.el-form .el-select) {
+//  width: 100%;
+//}
+</style>
 
-:deep(.el-form .el-select) {
-  width: 100%;
-}
+<style lang="scss">
+ .dept-search .el-form-item{
+   margin-bottom: 0;
+   margin-right: 16px;
+ }
+
+ .dept-search .el-form .el-select{
+   width: 100%;
+ }
 </style>

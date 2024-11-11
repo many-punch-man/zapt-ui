@@ -20,6 +20,13 @@ type UserVO = {
     createTime: Date
 }
 
+type SimpleUserVO = {
+    id: number
+    nickname: string
+    deptId: number
+    postIds: number[]
+}
+
 ////部门相关type
 
 // 部门vo

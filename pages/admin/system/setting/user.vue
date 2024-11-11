@@ -41,7 +41,7 @@
           <el-button type="primary" plain @click="handleAddUser">
             <el-icon class="mr-2">
               <Plus/>
-            </el-icon>`
+            </el-icon>
             Add
           </el-button>
         </div>
@@ -113,8 +113,8 @@
 </template>
 
 <script lang="tsx" setup>
-import UserDeptSidebar from "~/components/admin/system/setting/UserDeptSidebar.vue";
-import UserForm from "~/components/admin/system/setting/UserForm.vue";
+import UserDeptSidebar from "~/components/admin/system/setting/user/UserDeptSidebar.vue";
+import UserForm from "~/components/admin/system/setting/user/UserForm.vue";
 import {Delete, Download, Edit, Plus, Refresh, Search, Upload} from "@element-plus/icons-vue";
 import {ref} from "vue";
 import type {PageResult} from "~/types";
