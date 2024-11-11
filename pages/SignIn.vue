@@ -96,7 +96,9 @@ const formData = ref({
   captchaVerification: ''
 })
 
-
+/**
+ * 登录
+ */
 const submit = async () => {
   console.log(formData.value)
   const userToken = await fetchPost<UserToken>('/system/auth/login', {

@@ -1,6 +1,6 @@
 import type {NitroFetchOptions} from "nitropack";
 
-type CommonResponse<repT> =  {
+type CommonResponse<repT> = {
     code: number
     msg: string
     data: repT
@@ -19,7 +19,7 @@ type customerOptions = {
 
 type ApiOptions = NitroFetchOptions<any> & customerOptions
 
-type Tree =  {
+type Tree = {
     id: number
     name: string
     children?: Tree[] | any[]
@@ -62,4 +62,24 @@ type UserInfoVO = {
     isSetUser: boolean
     user: UserVO,
     menus: menuItem[]
+}
+
+type Recordable<T = any, K = string> = Record<K extends null | undefined ? string : K, T>
+
+/**
+ * 获取 dictType 对应的数据字典数组
+ *
+ * @param dictType 数据类型
+ * @returns {*|Array} 数据字典数组
+ */
+type DictDataType = {
+    dictType: string
+    label: string
+    value: string | number | boolean
+    colorType: ElementPlusInfoType | ''
+    cssClass: string
+}
+
+type NumberDictDataType = DictDataType & {
+    value: number | string
 }

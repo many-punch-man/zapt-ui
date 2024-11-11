@@ -99,8 +99,9 @@ export const useUserStore = defineStore('user', {
             // 保存状态
             localStorage.setItem('userStore', JSON.stringify(this.$state))
         },
-        persist: {
-            storage: persistedState.localStorage,
-        },
-    }
+
+    },
+    persist: {
+        storage: persistedState.localStorage,
+    },
 })

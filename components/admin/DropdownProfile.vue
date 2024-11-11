@@ -96,6 +96,7 @@ onUnmounted(() => {
 
 const handleSignOut = async () => {
   await useUserStore().loginOut();
+  useDictStore().resetStore();
   dropdownOpen.value = false
   navigateTo("/")
 }

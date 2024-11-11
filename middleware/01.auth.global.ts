@@ -1,5 +1,6 @@
 import type {UserToken} from "~/types";
 import {useUserStore} from "~/composables/useUserStore";
+import {useDictStore} from "~/composables/useDictStore";
 
 const whiteList = [
     '/admin/signin',
@@ -18,6 +19,12 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
             console.log("这里是管理员端口")
 
             if (userToken.value?.accessToken) {
+                // 获取字典缓存
+                const dictStore = useDictStore()
+                if(!dictStore.isSetDict){
+                    await dictStore.setDictMap()
+                }
+
                 // 从localStorage中加载用户信息
                 useUserStore().loadState();
 
@@ -36,7 +43,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
                 }
             } else {
                 // 如果访问token不存在，则直接跳到登录页
-                console.log("middleware: accessToken不存在，重定向")
+                useMessage().error('Please login first')
                 return navigateTo('/signin')
             }
 

@@ -1,4 +1,21 @@
+//// common
+ type DictState = {
+    dictMap: Map<string, any>
+    isSetDict: boolean
+}
 
+type DictDataVO ={
+    id: number | undefined
+    sort: number | undefined
+    label: string
+    value: string
+    dictType: string
+    status: number
+    colorType: string
+    cssClass: string
+    remark: string
+    createTime: Date
+}
 
 ////用户相关的type
 

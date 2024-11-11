@@ -78,8 +78,12 @@
         <el-col :span="12">
           <el-form-item label="Status" prop="status">
             <el-select v-model="formData.status" clearable placeholder="Please select status">
-              <el-option label="normal" :value="0"/>
-              <el-option label="deactivate" :value="1"/>
+              <el-option
+                  v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)"
+                  :key="dict.value"
+                  :label="dict.label"
+                  :value="dict.value"
+              />
             </el-select>
           </el-form-item>
         </el-col>
