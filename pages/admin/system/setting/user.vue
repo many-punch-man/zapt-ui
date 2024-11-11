@@ -41,7 +41,7 @@
           <el-button type="primary" plain @click="handleAddUser">
             <el-icon class="mr-2">
               <Plus/>
-            </el-icon>
+            </el-icon>`
             Add
           </el-button>
         </div>

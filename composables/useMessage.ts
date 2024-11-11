@@ -52,7 +52,7 @@ export const useMessage = () => {
         },
         // 确认窗体
         confirm(content: string, tip?: string) {
-            return ElMessageBox.confirm(content, tip ? tip : 'Tip', {
+            return ElMessageBox.confirm(content, tip = 'Tip', {
                 confirmButtonText: 'Ok',
                 cancelButtonText: 'Cancel',
                 type: 'warning'
