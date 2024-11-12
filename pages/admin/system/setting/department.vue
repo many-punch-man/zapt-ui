@@ -21,16 +21,14 @@
         </el-form-item>
 
         <el-form-item label="Status" prop="status">
-          <div class="min-w-[240px]">
-            <el-select v-model="queryParams.status" clearable placeholder="Please select status">
-              <el-option
-                  v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)"
-                  :key="dict.value"
-                  :label="dict.label"
-                  :value="dict.value"
-              />
-            </el-select>
-          </div>
+          <el-select v-model="queryParams.status" clearable placeholder="Please select status">
+            <el-option
+                v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)"
+                :key="dict.value"
+                :label="dict.label"
+                :value="dict.value"
+            />
+          </el-select>
         </el-form-item>
 
 

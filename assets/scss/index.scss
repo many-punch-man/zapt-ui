@@ -24,3 +24,14 @@
 [x-cloak=""] {
   display: none;
 }
+
+
+// fix when using inline form, the width of the input box is too narrow
+// https://github.com/element-plus/element-plus/issues/15834#issuecomment-1936919229
+.el-form--inline {
+  .el-form-item {
+    .el-input, .el-cascader, .el-select, .el-autocomplete {
+      min-width: var(--el-form-inline-content-width);
+    }
+  }
+}
