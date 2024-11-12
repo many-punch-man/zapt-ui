@@ -134,7 +134,7 @@ onMounted(async () => {
   await getTree()
   expandedRowKeys.value = getChildrenIds(deptList.value)
   //@ts-ignore
-  treeRef.value.setExpandedKeys(expandedRowKeys.value)
+  // treeRef.value.setExpandedKeys(expandedRowKeys.value)
 })
 
 </script>

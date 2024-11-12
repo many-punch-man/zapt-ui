@@ -5,14 +5,23 @@ const getSimpleDictDataList = async () => {
     return await fetchGet<any>('/system/dict-data/simple-list')
 }
 
+const mapToJson = (map: Map<any,any>) => {
+    return JSON.stringify([...map])
+}
+
+const jsonToMap = (json: string) :Map<string,any> => {
+    return new Map(JSON.parse(json))
+}
+
 export const useDictStore = defineStore('dict', {
     state: (): DictState => ({
-        dictMap: new Map<string, any>(),
-        isSetDict: false
+        dictMap: '',
+        isSetDict: false,
+        dictMapStr: '',
     }),
     getters: {
         getDictMap(): Recordable {
-            return this.dictMap
+            return jsonToMap(this.dictMap)
         },
         getIsSetDict(): boolean {
             return this.isSetDict
@@ -40,18 +49,19 @@ export const useDictStore = defineStore('dict', {
                 //更新
                 dictDataMap.set(dictData.dictType, existingArray)
             })
-            this.dictMap = dictDataMap
+            this.dictMap = mapToJson(dictDataMap)
             this.isSetDict = true
         },
         getDictByType(type: string) {
             if (!this.isSetDict) {
                 this.setDictMap()
             }
-            return this.dictMap.get(type)
+            let resultMap = jsonToMap(this.dictMap)
+            return  resultMap.get(type);
         },
         resetStore(){
             this.isSetDict = false
-            this.dictMap = new Map<string, any>()
+            this.dictMap = ''
         }
     },
     persist: {

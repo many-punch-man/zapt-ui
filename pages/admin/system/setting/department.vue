@@ -60,6 +60,13 @@
           </el-button>
         </el-form-item>
       </el-form>
+
+      <el-button @click="handleStoreTest">
+        存储字典
+      </el-button>
+      <el-button @click="handleReset">
+        重置字典
+      </el-button>
     </div>
 
     <!--  表体-->
@@ -78,7 +85,11 @@
             {{scope.row.leaderUserName}}
           </template>
         </el-table-column>
-        <el-table-column prop="status" label="status"/>
+        <el-table-column prop="status" label="status">
+          <template #default="scope">
+            <DictTag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
+          </template>
+        </el-table-column>
         <el-table-column label="action" align="center">
           <template #default="scope">
             <el-button
@@ -109,6 +120,14 @@ import {useMessage} from "~/composables/useMessage";
 import DeptForm from "~/components/admin/system/setting/dept/DeptForm.vue";
 
 defineOptions({name: 'department'})
+
+const handleStoreTest = () =>{
+  useDictStore().setDictMap()
+}
+
+const handleReset = () =>{
+  useDictStore().resetStore()
+}
 
 
 const tableData = ref<any[]>([])

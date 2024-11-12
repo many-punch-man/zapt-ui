@@ -1,10 +1,11 @@
 //// common
- type DictState = {
-    dictMap: Map<string, any>
+type DictState = {
+    dictMap: string
     isSetDict: boolean
+    dictMapStr: string
 }
 
-type DictDataVO ={
+type DictDataVO = {
     id: number | undefined
     sort: number | undefined
     label: string
