@@ -19,16 +19,21 @@
               class="!w-240px"
           />
         </el-form-item>
-        <el-form-item label="Status" prop="status" class="!min-w-240px">
-          <el-select
-              v-model="queryParams.status"
-              placeholder="Please select department status"
-              clearable
-          >
-            <el-option label="deactivate" :value="1"/>
-            <el-option label="normal" :value="0"/>
-          </el-select>
+
+        <el-form-item label="Status" prop="status">
+          <div class="min-w-[240px]">
+            <el-select v-model="queryParams.status" clearable placeholder="Please select status">
+              <el-option
+                  v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)"
+                  :key="dict.value"
+                  :label="dict.label"
+                  :value="dict.value"
+              />
+            </el-select>
+          </div>
         </el-form-item>
+
+
         <el-form-item>
           <el-button @click="handleQuery">
             <el-icon class="mr-5px">
@@ -60,13 +65,6 @@
           </el-button>
         </el-form-item>
       </el-form>
-
-      <el-button @click="handleStoreTest">
-        存储字典
-      </el-button>
-      <el-button @click="handleReset">
-        重置字典
-      </el-button>
     </div>
 
     <!--  表体-->
@@ -82,7 +80,7 @@
         <el-table-column label="name" prop="name"/>
         <el-table-column prop="leader" label="leader">
           <template #default="scope">
-            {{scope.row.leaderUserName}}
+            {{ scope.row.leaderUserName }}
           </template>
         </el-table-column>
         <el-table-column prop="status" label="status">
@@ -121,11 +119,11 @@ import DeptForm from "~/components/admin/system/setting/dept/DeptForm.vue";
 
 defineOptions({name: 'department'})
 
-const handleStoreTest = () =>{
+const handleStoreTest = () => {
   useDictStore().setDictMap()
 }
 
-const handleReset = () =>{
+const handleReset = () => {
   useDictStore().resetStore()
 }
 
@@ -207,12 +205,12 @@ onMounted(async () => {
 </style>
 
 <style lang="scss">
- .dept-search .el-form-item{
-   margin-bottom: 0;
-   margin-right: 16px;
- }
+.dept-search .el-form-item {
+  margin-bottom: 0;
+  margin-right: 16px;
+}
 
- .dept-search .el-form .el-select{
-   width: 100%;
- }
+.dept-search .el-form .el-select {
+  width: 100%;
+}
 </style>
