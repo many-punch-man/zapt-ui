@@ -9,15 +9,11 @@ const whiteList = [
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
     if (import.meta.client) {
-        console.log("客户端校验")
         const userToken = useCookie<UserToken>('userToken')
 
         //客户端进行校验
         if (to.fullPath.match(/^\/admin.*$/)) {
             // 这里是管理员端口
-
-            console.log("这里是管理员端口")
-
             if (userToken.value?.accessToken) {
                 // 获取字典缓存
                 const dictStore = useDictStore()
