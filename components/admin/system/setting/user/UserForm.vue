@@ -61,9 +61,13 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="Sex" prop="sex">
-            <el-select v-model="formData.sex" placeholder="Please select sex">
-              <el-option label="Male" :value="1"/>
-              <el-option label="Female" :value="2"/>
+            <el-select v-model="formData.sex" clearable placeholder="Please select sex">
+              <el-option
+                  v-for="dict in getIntDictOptions(DICT_TYPE.SYSTEM_USER_SEX)"
+                  :key="dict.value"
+                  :label="dict.label"
+                  :value="dict.value"
+              />
             </el-select>
           </el-form-item>
         </el-col>
