@@ -32,9 +32,9 @@ export default defineNuxtConfig({
             autoprefixer: {}
         }
     },
-    routeRules: {
-        "/admin/**":{
-            ssr: false
-        }
-    },
+    // routeRules: {
+    //     "/admin/**":{
+    //         ssr: false
+    //     }
+    // },
 })
