@@ -11,15 +11,15 @@
         <el-form
             ref="form"
             label-width="80px"
-            class="flex flex-wrap"
+            :inline="true"
+            class="user-search"
         >
           <el-form-item label="Name">
             <el-input placeholder="Name" v-model="queryParams.username"></el-input>
           </el-form-item>
 
-
           <el-form-item label="Status">
-            <el-select v-model="queryParams.status" clearable placeholder="Please select status">
+            <el-select v-model="queryParams.status" clearable placeholder="Please select status"  class="!w-240px">
               <el-option
                   v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)"
                   :key="dict.value"
@@ -232,3 +232,12 @@ onMounted(async () => {
   await getList()
 })
 </script>
+
+
+<style lang="scss">
+.user-search .el-form-item {
+  margin-bottom: 0;
+  margin-right: 16px;
+}
+
+</style>

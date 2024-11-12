@@ -31,7 +31,7 @@
 .el-form--inline {
   .el-form-item {
     .el-input, .el-cascader, .el-select, .el-autocomplete {
-      min-width: var(--el-form-inline-content-width);
+      min-width: var(--el-form-inline-content-width) !important;
     }
   }
 }
