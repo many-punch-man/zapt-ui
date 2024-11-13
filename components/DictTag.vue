@@ -37,8 +37,6 @@ const props = defineProps({
   }
 })
 
-console.log('props',props)
-
 const dictData = ref<DictDataType>()
 const getDictObj = (dictType: string, value: string) => {
   // 这里使用了localStorage缓存，服务端渲染可能会有问题

@@ -9,9 +9,24 @@ const mapToJson = (map: Map<any,any>) => {
     return JSON.stringify([...map])
 }
 
-const jsonToMap = (json: string) :Map<string,any> => {
-    return new Map(JSON.parse(json))
-}
+const jsonToMap = (json: string): Map<string, any> => {
+    try {
+        // 解析 JSON 字符串
+        const parsedJson = JSON.parse(json);
+
+        // 检查解析结果是否为数组
+        if (!Array.isArray(parsedJson)) {
+            throw new Error('解析结果不是数组');
+        }
+
+        // 将数组转换为 Map
+        return new Map(parsedJson);
+    } catch (error) {
+        // 处理解析错误
+        console.error('JSON 解析失败:', error);
+        throw new Error('无效的 JSON 字符串');
+    }
+};
 
 export const useDictStore = defineStore('dict', {
     state: (): DictState => ({
@@ -56,7 +71,13 @@ export const useDictStore = defineStore('dict', {
             if (!this.isSetDict) {
                 this.setDictMap()
             }
-            let resultMap = jsonToMap(this.dictMap)
+            let resultMap
+            try {
+                resultMap = jsonToMap(this.dictMap)
+            } catch (error) {
+                this.setDictMap()
+                resultMap = jsonToMap(this.dictMap)
+            }
             return  resultMap.get(type);
         },
         resetStore(){
