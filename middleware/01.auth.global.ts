@@ -1,4 +1,3 @@
-import type {UserToken} from "~/types";
 import {useUserStore} from "~/composables/useUserStore";
 import {useDictStore} from "~/composables/useDictStore";
 

@@ -7,7 +7,6 @@
 import type {CookieRef} from "nuxt/app";
 
 import type {NitroFetchOptions} from "nitropack";
-import type {ApiOptions, CommonResponse, UserToken} from "~/types";
 import {useMessage} from "~/composables/useMessage";
 
 /**
