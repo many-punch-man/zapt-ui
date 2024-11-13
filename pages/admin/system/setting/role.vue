@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col justify-between">
-    <div>
+  <div class="flex flex-col justify-between h-full">
+    <div class="grow flex flex-col">
       <!--搜索框-->
-      <div class="m-4 bg-white dark:bg-gray-800 rounded-lg p-4 role-search">
+      <div class="m-4 bg-white dark:bg-gray-800 rounded-lg p-4 role-search base-transition">
         <el-form
             ref="queryFormRef"
             :inline="true"
@@ -10,26 +10,26 @@
             class="-mb-15px"
             label-width="68px"
         >
-          <el-form-item label="角色名称" prop="name">
+          <el-form-item label="Name" prop="name">
             <el-input
                 v-model="queryParams.name"
                 class="!w-240px"
                 clearable
-                placeholder="请输入角色名称"
+                placeholder="Please enter name"
                 @keyup.enter="handleQuery"
             />
           </el-form-item>
-          <el-form-item label="角色标识" prop="code">
+          <el-form-item label="code" prop="code">
             <el-input
                 v-model="queryParams.code"
                 class="!w-240px"
                 clearable
-                placeholder="请输入角色标识"
+                placeholder="Please enter code"
                 @keyup.enter="handleQuery"
             />
           </el-form-item>
-          <el-form-item label="状态" prop="status">
-            <el-select v-model="queryParams.status" class="!w-240px" clearable placeholder="请选择状态">
+          <el-form-item label="Status" prop="status">
+            <el-select v-model="queryParams.status" class="!w-240px" clearable placeholder="Please select status">
               <el-option
                   v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)"
                   :key="dict.value"
@@ -41,36 +41,36 @@
 
           <el-form-item>
             <el-button @click="handleQuery">
-              搜索
+              Search
             </el-button>
             <el-button @click="resetQuery">
-              重置
+              Reset
             </el-button>
             <el-button
                 plain
                 type="primary"
                 @click="openForm('create')"
             >
-              新增
+              Add
             </el-button>
           </el-form-item>
         </el-form>
       </div>
 
       <!--  表体-->
-      <div class="m-4 bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
+      <div class="m-4 mt-0 bg-white dark:bg-gray-800 rounded-lg overflow-hidden base-transition grow">
         <el-table v-loading="loading" :data="list">
-          <el-table-column align="center" label="角色编号" prop="id"/>
-          <el-table-column align="center" label="角色名称" prop="name"/>
-          <el-table-column label="角色类型" align="center" prop="type">
+          <el-table-column align="center" label="id" prop="id"/>
+          <el-table-column align="center" label="Name" prop="name"/>
+          <el-table-column label="Type" align="center" prop="type">
             <template #default="scope">
               <DictTag :type="DICT_TYPE.SYSTEM_ROLE_TYPE" :value="scope.row.type"/>
             </template>
           </el-table-column>
-          <el-table-column align="center" label="角色标识" prop="code"/>
-          <el-table-column align="center" label="显示顺序" prop="sort"/>
-          <el-table-column align="center" label="备注" prop="remark"/>
-          <el-table-column align="center" label="状态" prop="status">
+          <el-table-column align="center" label="code" prop="code"/>
+          <el-table-column align="center" label="sort" prop="sort"/>
+          <el-table-column align="center" label="Remark" prop="remark"/>
+          <el-table-column align="center" label="Status" prop="status">
             <template #default="scope">
               <DictTag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
             </template>
@@ -78,43 +78,43 @@
           <el-table-column
               :formatter="dateFormatter"
               align="center"
-              label="创建时间"
+              label="Create Time"
               prop="createTime"
               width="180"
           />
-          <el-table-column :width="300" align="center" label="操作">
+          <el-table-column :width="300" align="center" label="Action">
             <template #default="scope">
               <el-button
                   link
                   type="primary"
                   @click="openForm('update', scope.row.id)"
               >
-                编辑
+                Edit
               </el-button>
               <el-button
                   link
                   preIcon="ep:basketball"
-                  title="菜单权限"
+                  title="Menu permissions"
                   type="primary"
                   @click="openAssignMenuForm(scope.row)"
               >
-                菜单权限
+                Menu permissions
               </el-button>
               <el-button
                   link
                   preIcon="ep:coin"
-                  title="数据权限"
+                  title="Data permissions"
                   type="primary"
                   @click="openDataPermissionForm(scope.row)"
               >
-                数据权限
+                Data permissions
               </el-button>
               <el-button
                   link
                   type="danger"
                   @click="handleDelete(scope.row.id)"
               >
-                删除
+                Delete
               </el-button>
             </template>
           </el-table-column>
@@ -122,7 +122,13 @@
       </div>
     </div>
     <div>
-
+      <div class="p-2 box-border flex justify-end m-4 mt-0 bg-white dark:bg-gray-800 rounded-lg overflow-hidden base-transition">
+        <Pagination :total="total"
+                    v-model:page="queryParams.pageNo"
+                    v-model:limit="queryParams.pageSize"
+                    @pagination="getList"
+        />
+      </div>
     </div>
   </div>
 
@@ -146,7 +152,7 @@ const queryParams = reactive({
 const queryFormRef = ref() // 搜索的表单
 const loading = ref(false) // 列表的加载中
 const total = ref(0) // 列表的总页数
-const list = ref([]) // 列表的数据
+const list = ref<RoleVO[]>([]) // 列表的数据
 
 const handleQuery = () => {
 
@@ -171,6 +177,24 @@ const formRef = ref()
 const openForm = (type: string, id?: number) => {
   formRef.value.open(type, id)
 }
+
+
+const getList = async () => {
+  loading.value = true
+  try {
+    const data = await fetchGet<PageResult<RoleVO>>('system/role/page', {
+      params: queryParams
+    })
+    list.value = data.list
+    total.value = data.total
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(async () => {
+  await getList()
+})
 </script>
 
 <style lang="scss">

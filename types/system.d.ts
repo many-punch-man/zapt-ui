@@ -1,4 +1,3 @@
-//// common
 type DictState = {
     dictMap: string
     isSetDict: boolean
@@ -69,4 +68,16 @@ type PostVO = {
     status: number
     remark: string
     createTime?: Date
+}
+// 角色vo
+type RoleVO = {
+    id: number
+    name: string
+    code: string
+    sort: number
+    status: number
+    type: number
+    dataScope: number
+    dataScopeDeptIds: number[]
+    createTime: Date
 }

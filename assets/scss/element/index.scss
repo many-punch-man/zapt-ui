@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $-colors: (
         'primary': (
                 'base': #4B4ACF,
@@ -19,8 +21,28 @@ $-colors: (
         ),
 );
 
+$-transition-duration: () !default;
+$-transition-duration: map.merge(
+                (
+                        '': 0.2s,
+                        'fast': 0.2s,
+                ),
+                $-transition-duration
+);
+
+$-transition-function: () !default;
+$-transition-function: map.merge(
+                (
+                        'ease-in-out-bezier': cubic-bezier(0.4, 0, 0.2, 1),
+                        'fast-bezier': cubic-bezier(0.4, 0, 0.2, 1),
+                ),
+                $-transition-function
+);
+
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
-  $colors: $-colors
+  $colors: $-colors,
+  $transition-duration:$-transition-duration,
+  $transition-function:$-transition-function,
 );
 
 @use './dark.scss';
