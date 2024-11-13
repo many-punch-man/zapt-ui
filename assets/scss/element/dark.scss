@@ -1,6 +1,30 @@
+$--colors: (
+        'primary': (
+                'base': #5150f4,
+        ),
+        'success': (
+                'base': #1C71AE,
+        ),
+        'warning': (
+                'base': #DFAD2B,
+        ),
+        'danger': (
+                'base': #C52727,
+        ),
+        'error': (
+                'base': #aa0e08,
+        ),
+        'info': (
+                'base': #4B5563,
+        ),
+);
+
+
 @forward 'element-plus/theme-chalk/src/dark/var.scss' with (
+  $colors: $--colors,
   $bg-color: (
-    'page': #0a0a0a,
-    'overlay': #1d1e1f,
+    'page': #374151,
+    'overlay': #6B7280,
+    '': #1F2937,
   )
 );

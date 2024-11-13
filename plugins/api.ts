@@ -8,6 +8,7 @@ import type {CookieRef} from "nuxt/app";
 
 import type {NitroFetchOptions} from "nitropack";
 import type {ApiOptions, CommonResponse, UserToken} from "~/types";
+import {useMessage} from "~/composables/useMessage";
 
 /**
  * interface FetchOptions {
@@ -48,6 +49,7 @@ import type {ApiOptions, CommonResponse, UserToken} from "~/types";
 
 export default defineNuxtPlugin((nuxtApp) => {
 
+    const meesage = useMessage()
 
 
     let requestList: any[] = []
@@ -78,22 +80,25 @@ export default defineNuxtPlugin((nuxtApp) => {
         const userToken: CookieRef<UserToken> = useCookie('userToken', {
             maxAge: 60 * 60 * 24 * 7,
         })
+        refreshCookie('userToken')
 
         console.log("isToken", isToken,userToken.value)
-        if (isToken && userToken.value.accessToken) {
-            // 设置请求头
-            options.headers = {
-                ...options.headers,
-                'Authorization': `Bearer ${userToken.value.accessToken}`
-            }
-        } else {
-            console.log("no token")
-            options.headers = {
-                ...options.headers,
-                'Authorization': `Bearer 123456789`
+        if(!(options.headers && ('Authorization' in options.headers))){
+            // 如果存在 就说明了，token已经设置过了，不需要再设置
+            if (isToken && userToken.value.accessToken ) {
+                // 设置请求头
+                options.headers = {
+                    ...options.headers,
+                    'Authorization': `Bearer ${userToken.value.accessToken}`
+                }
+            } else {
+                console.log("no token")
+                options.headers = {
+                    ...options.headers,
+                    'Authorization': `Bearer 123456789`
+                }
             }
         }
-
         const apiSuffix = options.isApp ? '/app-api' : '/admin-api'
 
         //默认请求头
@@ -108,7 +113,7 @@ export default defineNuxtPlugin((nuxtApp) => {
             ...options
         }
         ////////////////////////////////请求前进行拦截的逻辑///////////////////
-        console.log("请求拦截完成------------>{}", newOptions)
+        console.log("请求拦截完成------------>{}", url ,newOptions)
         try {
             //  这里进行发送请求
             const response = await $fetch(url, newOptions as NitroFetchOptions<any>);
@@ -138,7 +143,15 @@ export default defineNuxtPlugin((nuxtApp) => {
                             console.log("刷新令牌成功------------>{}", refreshResp)
 
                             //刷新成功了，设置到cookies
-                            userToken.value = refreshResp.data
+                            userToken.value = refreshResp
+                            // 刷新token，避免重复刷新
+                            refreshCookie('userToken')
+
+                            console.log("保存新的令牌到cookies---------->{}",userToken.value)
+
+                            //
+
+                            isRefreshToken = false
 
                             // 2.1 放回队列的请求 + 当前请求
                             requestList.forEach((cb) => {
@@ -146,6 +159,10 @@ export default defineNuxtPlugin((nuxtApp) => {
                             })
                             requestList = []
                             // 重新请求一次
+                            options.headers = {
+                                ...options.headers,
+                                'Authorization': `Bearer ${refreshResp.accessToken}`
+                            }
                             return api<repT>(url, options);
                         } catch (error) {
                             console.log("捕获刷新令牌时候发生的Promise错误------->{}", response)
@@ -166,10 +183,10 @@ export default defineNuxtPlugin((nuxtApp) => {
                                 userId: ''
                             }
 
+                            isRefreshToken = false
+
                             //跳转
                             navigateTo("/login")
-                        } finally {
-                            isRefreshToken = false
                         }
                     } else {
                         //加入队列，进行等待
@@ -183,10 +200,12 @@ export default defineNuxtPlugin((nuxtApp) => {
                     //服务器错误
                     //todo 这里需要提示
                     console.log("发生500错误------->{}", response)
+                    meesage.error(response.msg)
                     return Promise.reject(response)
                 }  else if (response.code != 200) {
                     //其他错误
                     //todo 这里需要提示
+                    meesage.error(response.msg)
                     console.log("发生其他错误------->{}", response)
                     return Promise.reject(response)
                 } else {
@@ -195,13 +214,14 @@ export default defineNuxtPlugin((nuxtApp) => {
                 }
             }else {
                 console.log("返回原始数据----->{}", response)
+                meesage.error('error!')
                 return Promise.resolve(response)
             }
 ////////////////////////////////响应请求逻辑//////////////////////////////
 
 ////////////////////////////////结束响应//////////////////////////////
         } catch (error) {
-
+            meesage.error('error!')
             console.warn("发送请求的时候发生错误------------> {}", error)
             return Promise.reject(error);
         }

@@ -76,3 +76,14 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 
 
+
+## icon
+Use [@egoist/tailwindcss-icons](https://github.com/egoist/tailwindcss-icons). You can use Many icon library.
+
+this project use the [google material icons](https://icones.js.org/collection/ic)
+
+
+exmaple
+```html
+<span class="i-ic-baseline-ad-units"></span>
+```

@@ -4,15 +4,16 @@ import {include, exclude} from "./build/optimize";
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
     devtools: {enabled: true},
-    modules: ['@element-plus/nuxt', '@nuxtjs/tailwindcss'],
+    modules: ['@nuxtjs/tailwindcss', "@nuxt/devtools", 'nuxt-aos','@element-plus/nuxt','@pinia/nuxt','@pinia-plugin-persistedstate/nuxt'],
     elementPlus: {
         importStyle: 'scss',
+        themes: ['dark'],
     },
-    css: ['~/assets/scss/index.scss','~/assets/css/main.css','~/assets/css/style.css'],
-    imports:{
-        dirs:[
+    css: ['~/assets/scss/index.scss'],
+    imports: {
+        dirs: [
             'composables',
-            'composables/**'
+            'composables/**',
         ]
     },
     vite: {
@@ -26,9 +27,14 @@ export default defineNuxtConfig({
         },
         optimizeDeps: {include, exclude}
     },
-    postcss:{
-        plugins:{
-            autoprefixer:{}
+    postcss: {
+        plugins: {
+            autoprefixer: {}
         }
-    }
+    },
+    // routeRules: {
+    //     "/admin/**":{
+    //         ssr: false
+    //     }
+    // },
 })

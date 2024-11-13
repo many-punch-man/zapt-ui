@@ -1,26 +1,48 @@
+@use 'sass:map';
+
 $-colors: (
         'primary': (
-                'base': #02D098,
+                'base': #4B4ACF,
         ),
         'success': (
-                'base': #02D098,
+                'base': #1C71AE,
         ),
         'warning': (
-                'base': #FF9600,
+                'base': #DFAD2B,
         ),
         'danger': (
-                'base': #FF0B02,
+                'base': #C52727,
         ),
         'error': (
-                'base': #FF0B02,
+                'base': #aa0e08,
         ),
         'info': (
-                'base': #909399,
+                'base': #4B5563,
         ),
 );
 
+$-transition-duration: () !default;
+$-transition-duration: map.merge(
+                (
+                        '': 0.2s,
+                        'fast': 0.2s,
+                ),
+                $-transition-duration
+);
+
+$-transition-function: () !default;
+$-transition-function: map.merge(
+                (
+                        'ease-in-out-bezier': cubic-bezier(0.4, 0, 0.2, 1),
+                        'fast-bezier': cubic-bezier(0.4, 0, 0.2, 1),
+                ),
+                $-transition-function
+);
+
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
-  $colors: $-colors
+  $colors: $-colors,
+  $transition-duration:$-transition-duration,
+  $transition-function:$-transition-function,
 );
 
 @use './dark.scss';

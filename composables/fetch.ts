@@ -1,4 +1,3 @@
-import type {ApiOptions, CommonResponse} from "~/types";
 
 ///////admin请求
 export const fetchGet = async<T> (url:string, option?:ApiOptions)=>{

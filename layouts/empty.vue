@@ -1,11 +1,11 @@
 <template>
   <div>
-    123456
+    <slot ></slot>
   </div>
 </template>
 
 <script lang="tsx" setup>
 import {ref} from 'vue'
 
-defineOptions({name: 'LayoutTopBar'})
+defineOptions({name: 'empty'})
 </script>
