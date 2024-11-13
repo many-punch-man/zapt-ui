@@ -122,7 +122,8 @@
       </div>
     </div>
     <div>
-      <div class="p-2 box-border flex justify-end m-4 mt-0 bg-white dark:bg-gray-800 rounded-lg overflow-hidden base-transition">
+      <div
+          class="p-2 box-border flex justify-end m-4 mt-0 bg-white dark:bg-gray-800 rounded-lg overflow-hidden base-transition">
         <Pagination :total="total"
                     v-model:page="queryParams.pageNo"
                     v-model:limit="queryParams.pageSize"
@@ -130,16 +131,23 @@
         />
       </div>
     </div>
+
+    <RoleForm ref="formRef" @success="handleQuery"/>
+
   </div>
 
 </template>
 
 <script lang="tsx" setup>
+useHead({
+  title: 'role - zapt'
+})
 import {ref} from 'vue'
 import {dateFormatter} from "~/utils/formatTime";
+import RoleForm from "~/components/admin/system/setting/role/RoleForm.vue";
+
 
 defineOptions({name: 'role'})
-
 const queryParams = reactive({
   pageNo: 1,
   pageSize: 10,
@@ -154,12 +162,14 @@ const loading = ref(false) // 列表的加载中
 const total = ref(0) // 列表的总页数
 const list = ref<RoleVO[]>([]) // 列表的数据
 
-const handleQuery = () => {
-
+const handleQuery = async () => {
+  await getList()
 }
 
-const resetQuery = () => {
-
+const resetQuery = async () => {
+  queryParams.pageNo = 1
+  queryFormRef.value.resetFields()
+  await handleQuery()
 }
 
 const openAssignMenuForm = (_row: any) => {
@@ -169,8 +179,15 @@ const openAssignMenuForm = (_row: any) => {
 const openDataPermissionForm = (_row: any) => {
 }
 
-const handleDelete = (_row: any) => {
-
+const handleDelete = (id: number) => {
+  useMessage().confirm("Are you sure to delete the role?")
+      .then(
+          async () => {
+            await fetchDelete('/system/role/delete', {params: {id}})
+            useMessage().success("Delete Success!")
+            await getList()
+          }
+      )
 }
 
 const formRef = ref()

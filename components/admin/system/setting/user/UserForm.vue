@@ -105,7 +105,6 @@
 
 <script lang="ts" setup>
 import {ref} from 'vue'
-import type {Tree} from "~/types";
 
 defineOptions({name: 'UserForm'})
 
@@ -132,7 +131,6 @@ const formType = ref('create')
 
 /** open dialog */
 const open = async (type: string, id?: number) => {
-  console.log('open user form open( )')
   dialogVisible.value = true
   dialogTitle.value = type === 'create' ? 'Create User' : 'Edit User'
   formType.value = type

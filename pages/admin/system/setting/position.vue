@@ -5,6 +5,9 @@
 </template>
 
 <script lang="tsx" setup>
+useHead({
+  title:'positions - zapt'
+})
 import {ref} from 'vue'
 
 defineOptions({name: 'postition'})

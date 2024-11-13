@@ -125,11 +125,13 @@
 </template>
 
 <script lang="tsx" setup>
+useHead({
+  title:'user - zapt'
+})
 import UserDeptSidebar from "~/components/admin/system/setting/user/UserDeptSidebar.vue";
 import UserForm from "~/components/admin/system/setting/user/UserForm.vue";
 import {Delete, Download, Edit, Plus, Refresh, Search, Upload} from "@element-plus/icons-vue";
 import {ref} from "vue";
-import type {PageResult} from "~/types";
 import dayjs from "dayjs";
 import {useMessage} from "~/composables/useMessage";
 

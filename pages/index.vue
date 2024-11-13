@@ -3,7 +3,9 @@
 </template>
 
 <script lang="tsx" setup>
-import {ref} from 'vue'
+useHead({
+  title:'zapt'
+})
 
 defineOptions({name: 'index'})
 </script>

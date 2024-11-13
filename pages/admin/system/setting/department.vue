@@ -111,6 +111,9 @@
 </template>
 
 <script lang="tsx" setup>
+useHead({
+  title:'department - zapt'
+})
 import {ref} from 'vue'
 import {useMessage} from "~/composables/useMessage";
 import DeptForm from "~/components/admin/system/setting/dept/DeptForm.vue";
@@ -159,10 +162,10 @@ const handleQuery = async () => {
   await getList()
 }
 
-const resetQuery = () => {
+const resetQuery = async () => {
   queryParams.pageNo = 1
   queryFormRef.value.resetFields()
-  handleQuery()
+  await handleQuery()
 }
 
 const toggleExpandAll = () => {
