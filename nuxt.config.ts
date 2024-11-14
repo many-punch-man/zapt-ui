@@ -32,9 +32,9 @@ export default defineNuxtConfig({
             autoprefixer: {}
         }
     },
-    // routeRules: {
-    //     "/admin/**":{
-    //         ssr: false
-    //     }
-    // },
+    routeRules: {
+        "/admin-api/**":{
+            proxy: "http://172.28.198.75:48080/admin-api/**"
+        }
+    },
 })

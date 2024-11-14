@@ -46,6 +46,7 @@ import {useMessage} from "~/composables/useMessage";
  */
 
 
+
 export default defineNuxtPlugin((nuxtApp) => {
 
     const meesage = useMessage()
@@ -102,7 +103,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
         //默认请求头
         const defaultOptions = {
-            baseURL: 'http://localhost:48080'+apiSuffix,
+            baseURL: process.env.NUXT_API_URL+apiSuffix,
             method: 'GET',
         }
 
