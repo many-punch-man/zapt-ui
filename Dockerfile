@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM registry.cn-hangzhou.aliyuncs.com/zapt/node:20-alpine
 LABEL authors="11017"
 
 # 创建工作目录
