@@ -100,10 +100,11 @@ export default defineNuxtPlugin((nuxtApp) => {
             }
         }
         const apiSuffix = options.isApp ? '/app-api' : '/admin-api'
+        const appConfig = useRuntimeConfig()
 
         //默认请求头
         const defaultOptions = {
-            baseURL: process.env.NUXT_API_URL+apiSuffix,
+            baseURL: appConfig.public.apiUrl+apiSuffix,
             method: 'GET',
         }
 

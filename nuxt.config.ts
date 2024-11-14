@@ -37,4 +37,9 @@ export default defineNuxtConfig({
             proxy: "http://172.28.198.75:48080/admin-api/**"
         }
     },
+    runtimeConfig:{
+        public:{
+            apiUrl: process.env.NUXT_API_URL
+        }
+    }
 })
