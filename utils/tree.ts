@@ -77,3 +77,18 @@ export const handleTree = (data: any[], id?: string, parentId?: string, children
 
     return tree
 }
+
+
+/**
+ * 获取树的所有节点的ID
+ */
+export const getAllIds = (data: any[], config?: TreeHelperConfig = DEFAULT_CONFIG) => {
+    const ids: any[] = []
+    data.forEach(item => {
+        ids.push(item[config.id])
+        if (item[config.children]) {
+            ids.push(...getAllIds(item[config.children], config))
+        }
+    })
+    return ids
+}

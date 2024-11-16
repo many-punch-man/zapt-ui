@@ -21,7 +21,6 @@
 
 <script lang="tsx" setup>
 import {type PropType, ref} from 'vue'
-import type {DictDataType} from "~/types";
 
 defineOptions({name: 'DictTag'})
 

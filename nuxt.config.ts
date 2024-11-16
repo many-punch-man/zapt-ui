@@ -21,7 +21,8 @@ export default defineNuxtConfig({
             preprocessorOptions: {
                 scss: {
                     additionalData: `@use "@/assets/scss/element/index.scss" as element;`,
-                    quietDeps: true
+                    quietDeps: true,
+                    api: 'modern-compiler'
                 }
             }
         },
