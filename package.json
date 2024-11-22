@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "build:prod": "nuxt build --dotenv .env.prod",
+    "build:prod": "nuxt build --dotenv .env.prod  && mkdir .output/server/node_modules/@popperjs && mv .output/server/node_modules/@sxzz/popperjs-es .output/server/node_modules/@popperjs/core",
     "dev": "nuxt dev --dotenv .env.dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
