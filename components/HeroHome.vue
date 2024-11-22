@@ -23,7 +23,7 @@
           <h1 class="h1 mb-4" data-aos="fade-up">Zero-code Agile Platform for Total Solutions</h1>
           <p class="text-xl text-gray-400 mb-8" data-aos="fade-up" data-aos-delay="200">Aimed at small and medium-sized enterprises, it provides a one-stop
             Zero-code development platform to help enterprises quickly build business systems.It has OA, CMS, PMS, HRM and
-            other modules.</p>
+            other modules.1</p>
           <div class="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
             <div data-aos="fade-up" data-aos-delay="400">
               <a class="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0" href="#0">Request Demo</a>
