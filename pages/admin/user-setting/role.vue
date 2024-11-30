@@ -133,7 +133,7 @@
     </div>
 
     <RoleForm ref="formRef" @success="handleQuery"/>
-
+    <RoleAssignMenuForm ref="assignMenuForm"  @success="getList" />
   </div>
 
 </template>
@@ -145,6 +145,7 @@ useHead({
 import {ref} from 'vue'
 import {dateFormatter} from "~/utils/formatTime";
 import RoleForm from "~/components/admin/system/setting/role/RoleForm.vue";
+import RoleAssignMenuForm from "~/components/admin/system/setting/role/RoleAssignMenuForm.vue";
 
 
 defineOptions({name: 'role'})
@@ -172,8 +173,10 @@ const resetQuery = async () => {
   await handleQuery()
 }
 
-const openAssignMenuForm = (_row: any) => {
-
+// 授权菜单
+const assignMenuForm = ref()
+const openAssignMenuForm = (row: any) => {
+  assignMenuForm.value.open(row)
 }
 
 const openDataPermissionForm = (_row: any) => {
